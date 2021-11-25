@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Treasure {
     @Id
-    private int id;
+    private String id;
 
     private String wuxue;
     private boolean is750;

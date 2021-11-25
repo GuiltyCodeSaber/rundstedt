@@ -1003,7 +1003,7 @@ public class RoleFilterService {
                     "WHERE tmp.role_id = role.id " + serversql +
                     "GROUP BY tmp.role_id " +
                     "HAVING COUNT(tmp.role_id)>4 " +
-                    "ORDER BY CAST(role.price AS DECIMAL)";
+                    "ORDER BY role.price";
         }
         System.out.println(sql);
         List response = jdbcTemplate.queryForList(sql); //执行 sql查询
@@ -1076,7 +1076,7 @@ public class RoleFilterService {
                     clause + serversql +
                     "GROUP BY role.id " +
                     "HAVING COUNT(role.id)>" + count +
-                    " ORDER BY CAST(role.price AS DECIMAL)";
+                    " ORDER BY role.price";
 
         }
         System.out.println(sql);
@@ -1146,7 +1146,7 @@ public class RoleFilterService {
                     clause + serversql +
                     "GROUP BY role.id " +
                     "HAVING COUNT(role.id)>" + count +
-                    " ORDER BY CAST(role.price AS DECIMAL)";
+                    " ORDER BY role.price";
         }
         System.out.println(sql);
         List response = jdbcTemplate.queryForList(sql);

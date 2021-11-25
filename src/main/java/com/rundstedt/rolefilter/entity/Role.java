@@ -22,7 +22,7 @@ public class Role {
     private String grade;
     private String school;
     private String neigongyanxiu;
-    private String price;
+    private int price;
     private String serverName;
     private String serverId;
     private String status;
