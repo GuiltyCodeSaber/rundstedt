@@ -996,7 +996,7 @@ public class RoleFilterService {
             }
 
             // 组合sql语句
-            sql = "SELECT tmp.role_id,role.grade,role.server_id,role.name,role.gender,role.school,role.neigongyanxiu,role.price,role.status,role.server_name " +
+            sql = "SELECT role.id,role.grade,role.server_id,role.name,role.gender,role.school,role.neigongyanxiu,role.price,role.status,role.server_name " +
                     "FROM (SELECT treasure.`role_id` " +
                     clause1 + wuxueSql + is750sql + paramSql +
                     clause2 + paramCountSql + ") AS tmp ,role " +
@@ -1112,19 +1112,19 @@ public class RoleFilterService {
         // 有参
         else {
             if (!skin1.equals("")) {
-                clause += "(skin.name LIKE'" + skin1 + "%'";
+                clause += "((skin.name ='" + skin1 + "'" + " OR skin.name LIKE'" + skin1 + "·%')";
                 count = "0";
                 if (!skin2.equals("")) {
-                    clause += " OR skin.name LIKE'" + skin2 + "%'";
+                    clause += " OR (skin.name ='" + skin2 + "'" + " OR skin.name LIKE'" + skin2 + "·%')";
                     count = "1";
                     if (!skin3.equals("")) {
-                        clause += " OR skin.name LIKE'" + skin3 + "%'";
+                        clause += " OR (skin.name ='" + skin3 + "'" + " OR skin.name LIKE'" + skin3 + "·%')";
                         count = "2";
                         if (!skin4.equals("")) {
-                            clause += " OR skin.name LIKE'" + skin4 + "%'";
+                            clause += " OR (skin.name ='" + skin4 + "'" + " OR skin.name LIKE'" + skin4 + "·%')";
                             count = "3";
                             if (!skin5.equals("")) {
-                                clause += " OR skin.name LIKE'" + skin5 + "%'";
+                                clause += " OR (skin.name ='" + skin5 + "'" + " OR skin.name LIKE'" + skin5 + "·%')";
                                 count = "4";
                             }
                         }
