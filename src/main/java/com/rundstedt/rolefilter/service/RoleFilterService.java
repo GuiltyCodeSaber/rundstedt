@@ -16,6 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
@@ -156,7 +157,11 @@ public class RoleFilterService {
         role.setGrade(pageData.getString("grade").toString().length()<4?pageData.getString("gradeName").toString():pageData.getString("grade").toString());
         role.setGender(pageData.get("gender").toString());
         role.setPrice(pageData.get("price").toString());
-        role.setNeigongyanxiu(parseNeigongyanxiu(serverId,role.getId()));
+        String neigongyanxiu = parseNeigongyanxiu(serverId, role.getId());
+        if (neigongyanxiu == null){
+            return roles;
+        }
+        role.setNeigongyanxiu(neigongyanxiu);
         role.setSchool(parseSchool(serverId,role.getId()));
         role.setServer(getServerName(serverId));
 
@@ -309,6 +314,9 @@ public class RoleFilterService {
         JSONObject object = (JSONObject) jsonArray.get(0);
 
         String msg = object.get("msg").toString();
+        if(!StringUtils.hasText(msg)){
+            return null;
+        }
 
         int beg = msg.indexOf("内功研修") + 6;
         int end = msg.indexOf("武学") - 4;
