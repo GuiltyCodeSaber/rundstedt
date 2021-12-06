@@ -152,6 +152,10 @@ public class RoleFilterService {
         ArrayList<RoleInfo> roles = new ArrayList<>();
         RoleInfo role = new RoleInfo();
 
+        if (pageData == null){
+            return roles;
+        }
+
         role.setId(pageData.get("id").toString());
         role.setName(pageData.get("itemName").toString());
         role.setGrade(pageData.getString("grade").toString().length()<4?pageData.getString("gradeName").toString():pageData.getString("grade").toString());
